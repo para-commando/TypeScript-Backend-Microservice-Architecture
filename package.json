@@ -37,6 +37,7 @@
     "@types/express": "^4.17.17",
     "@types/helmet": "^4.0.0",
     "@types/jsonwebtoken": "^9.0.2",
+    "@types/morgan": "^1.9.5",
     "@types/node": "^20.3.0",
     "nodemon": "^2.0.22",
     "pm2": "^5.3.0",

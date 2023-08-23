@@ -1,8 +1,9 @@
 const responseTime = require('response-time');
+import { Request, Response, NextFunction } from 'express';
 
-module.exports.responseTimeMiddleware = responseTime({
+export const responseTimeMiddleware = responseTime({
     header: 'X-Response-Time',
-  },(req , res ,next ) => {
+  },(req:Request , res:Response ,next:NextFunction ) => {
     // Do something with the response time.
     next();
   })

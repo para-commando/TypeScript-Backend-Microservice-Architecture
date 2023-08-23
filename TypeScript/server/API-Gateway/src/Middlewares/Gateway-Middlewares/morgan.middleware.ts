@@ -1,2 +1,2 @@
-const morgan = require('morgan');
-module.exports.morganMiddleware = morgan('combined')
+import morgan from 'morgan';
+export const morganMiddleware = morgan('combined')
