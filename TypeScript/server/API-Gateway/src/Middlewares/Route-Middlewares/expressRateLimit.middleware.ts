@@ -1,16 +1,16 @@
-import limiter, { Interval } from "limiter";
+import {RateLimiter, Interval } from "limiter";
 import { Request, Response, NextFunction } from "express";
 
 // Create a new rate limiter instance with desired settings
 const createRateLimiter = (tokensPerInterval: number, interval: Interval) => {
-  return new limiter.RateLimiter({
+  return new RateLimiter({
     tokensPerInterval,
     interval,
   });
 };
 
 // Reusable middleware function to handle rate limiting
-const rateLimitMiddleware = (rateLimiter: limiter.RateLimiter) => async (
+const rateLimitMiddleware = (rateLimiter: RateLimiter) => async (
   req: Request,
   res: Response,
   next: NextFunction

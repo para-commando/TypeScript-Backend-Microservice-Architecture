@@ -1,6 +1,6 @@
 
 import e from 'express'
-import contentSecurityPolicy from '../../../../../node_modules/helmet/index.mjs'
+import contentSecurityPolicy from 'helmet'
 import * as OptionsT from 'express-rate-limit'
 declare module 'express' {
     interface RequestModified extends e.Request {
@@ -25,6 +25,3 @@ declare module 'helmet' {
 }
 
  
-declare module 'express-rate-limit' {
-    type Options = { headersTimeout: number } & OptionsT.Options
-}

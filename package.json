@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "onlyTsFiles": "ts-node-dev --respawn --cls --transpile-only ./src/server.ts",
+    "start":"nodemon JavaScriptFiles/server/API-Gateway/src/Microservice-Routers/microserviceRouters.js",
     "startDev": "pm2 start ecosystem.config.js",
     "kill": "pm2 kill",
     "build": "tsc -p .",
     "monitor": "pm2 monitor",
-    "displayLogs": "pm2 logs"
+    "displayLogs": "pm2 logs",
+    "runts": "ts-node  ./TypeScript/server/API-Gateway/src/Microservice-Routers/microserviceRouters.ts"
   },
   "keywords": [],
   "author": "",

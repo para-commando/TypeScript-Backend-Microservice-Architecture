@@ -1,4 +1,4 @@
-const logger = require ('../../../shared/src/configurations/logger.configurations')
+import {logger} from '../../../shared/src/configurations/logger.configurations';
 interface ProcessMappers {
     coreProcess1: (asd: any) => Promise<any>;
   }

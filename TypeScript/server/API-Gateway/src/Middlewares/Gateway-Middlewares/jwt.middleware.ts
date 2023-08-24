@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-
+import * as dotenv from 'dotenv';
+dotenv.config();
 interface CustomError {
   message: string;
 }

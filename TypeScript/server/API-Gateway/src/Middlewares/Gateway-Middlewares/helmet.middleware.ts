@@ -12,8 +12,9 @@ export const helmetMiddleware = helmet({
     directives: {
       defaultSrc: ["'self'", 'https:'],
       connectSrc: ["'self'", 'https:'],
-      policy: "default-src 'self' https:; img-src * data:; style-src 'self' https: 'unsafe-inline'; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; font-src 'self' https: data:;",
+     
     },
+    
   },
   crossOriginEmbedderPolicy: {
     policy: "require-corp",

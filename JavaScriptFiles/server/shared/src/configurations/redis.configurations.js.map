@@ -1,0 +1,1 @@
+{"version":3,"file":"redis.configurations.js","sourceRoot":"","sources":["../../../../../TypeScript/server/shared/src/configurations/redis.configurations.ts"],"names":[],"mappings":";;AAAA,iCAAqC;AAErC,MAAM,WAAW,GAAG,IAAA,oBAAY,EAAC;IAC/B,MAAM,EAAE;QACN,IAAI,EAAE,WAAW;QACjB,IAAI,EAAE,IAAI;KACX;CACF,CAAC,CAAC;AAEH,WAAW,CAAC,OAAO,EAAE,CAAC;AAEtB,kBAAe,WAAW,CAAC"}
