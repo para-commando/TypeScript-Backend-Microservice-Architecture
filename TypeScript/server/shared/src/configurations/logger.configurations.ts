@@ -1,7 +1,7 @@
 const bunyan = require('bunyan');
 const formatOut = require('bunyan-format')({ color: true });
 
-const logger = bunyan.createLogger({
+export const logger = bunyan.createLogger({
     name: 'my-app',
     level: 'info',
     streams: [
@@ -12,4 +12,3 @@ const logger = bunyan.createLogger({
     ],
   });
 
-module.exports = logger;
