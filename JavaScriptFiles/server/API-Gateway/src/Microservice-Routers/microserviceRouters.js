@@ -45,7 +45,13 @@ app.post("/myEndPoint1", (0, expressRateLimit_middleware_1.rateLimitMiddleware)(
     }
     catch (error) {
         logger_configurations_1.logger.error('This is an error message.');
-        res.status(400).json({ error: error });
+        if (error && typeof error === 'object' && 'message' in error) {
+            const customError = error;
+            return res.status(customError.status || 401).send(customError.message);
+        }
+        else {
+            return res.status(401).send('Unknown error occurred while token verification');
+        }
     }
 }));
 app.listen(3000, () => {

@@ -6,7 +6,11 @@ import { logger } from '../../../shared/src/configurations/logger.configurations
 import { createRateLimiter, rateLimitMiddleware }  from "../Middlewares/Route-Middlewares/expressRateLimit.middleware"
 
 const app = require('../app');
-
+interface CustomError {
+  message: string;
+  status: number;
+}
+ 
 const endpoint1Limiter = createRateLimiter(2, "minute");
  
 app.post("/myEndPoint1", rateLimitMiddleware(endpoint1Limiter), 
@@ -38,7 +42,12 @@ app.post("/myEndPoint1", rateLimitMiddleware(endpoint1Limiter),
     } catch (error) {
       logger.error('This is an error message.');
 
-      res.status(400).json({ error: error });
+      if (error && typeof error === 'object' && 'message' in error) {
+        const customError = error as CustomError;
+        return res.status(customError.status || 401).send(customError.message);
+      } else {
+        return res.status(401).send('Unknown error occurred while token verification');
+      }
     }
   
 });

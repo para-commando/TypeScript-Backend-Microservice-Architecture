@@ -13,8 +13,14 @@ exports.processes = void 0;
 const logger_configurations_1 = require("../../../shared/src/configurations/logger.configurations");
 exports.processes = {
     coreProcess1: (asd) => __awaiter(void 0, void 0, void 0, function* () {
-        logger_configurations_1.logger.info(`This is the function argument : ${asd}`);
-        return asd;
+        try {
+            logger_configurations_1.logger.info(`This is the function argument : ${asd}`);
+            return asd;
+        }
+        catch (err) {
+            logger_configurations_1.logger.error('This is an error object from process: ', err);
+            throw err;
+        }
     }),
 };
 //# sourceMappingURL=process.js.map
