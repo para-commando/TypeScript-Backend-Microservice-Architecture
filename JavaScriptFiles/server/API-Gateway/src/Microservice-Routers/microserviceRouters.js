@@ -8,41 +8,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const joi_1 = __importDefault(require("joi"));
 const processMappers_1 = require("../../../sub-systems/Microservice-1/Process-Mappers/processMappers");
 const logger_configurations_1 = require("../../../shared/src/configurations/logger.configurations");
 const expressRateLimit_middleware_1 = require("../Middlewares/Route-Middlewares/expressRateLimit.middleware");
+const zod_1 = require("zod");
 const app = require('../app');
 // interval in milliseconds
 const endpoint1Limiter = (0, expressRateLimit_middleware_1.createRateLimiter)({ tokensPerInterval: 3, interval: 10000, numberOfTokensToSubtract: 1, fireImmediately: true });
 app.post("/myEndPoint1", (0, expressRateLimit_middleware_1.rateLimitMiddleware)(endpoint1Limiter), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const schema = joi_1.default.object({
-            name: joi_1.default.string().valid('Anirudh', 'Nayak').default(null),
-            demand: joi_1.default.string()
-                .valid('Highest', 'High', 'Medium', 'Low')
-                .default(null),
-            myTaskStatus: joi_1.default.string()
-                .valid('Not Started', 'In Progress', 'Completed', 'Unassigned')
-                .default(null),
+        // Explore more and use accordingly
+        const schema = zod_1.z.object({
+            name: zod_1.z.string().optional().refine(value => value === 'Anirudh' || value === 'Nayak', {
+                message: 'Invalid name value',
+            }),
+            demand: zod_1.z.enum(['Highest', 'High', 'Medium', 'Low']).optional(),
+            myTaskStatus: zod_1.z.enum(['Not Started', 'In Progress', 'Completed', 'Unassigned']).optional(),
         });
-        const validationResult = schema.validate(req.body);
-        if (validationResult.error) {
-            logger_configurations_1.logger.warn('This is a warning message.');
-            logger_configurations_1.logger.error('This is an error message.');
-            res.sendStatus(400);
-        }
-        else {
-            const response = yield processMappers_1.processMappers.process1(validationResult.value);
-            logger_configurations_1.logger.info("🚀 ~ file: microserviceRouters.js:31 ~ response:", response);
-            res.json({
-                response: response,
-            });
-        }
+        const validationResult = schema.parse(req.body);
+        console.log("🚀 ~ file: microserviceRouters.ts:25 ~ validationResult:", validationResult);
+        const response = yield processMappers_1.processMappers.process1(validationResult);
+        logger_configurations_1.logger.info("🚀 ~ file: microserviceRouters.js:31 ~ response:", response);
+        res.json({
+            response: response,
+        });
     }
     catch (error) {
         logger_configurations_1.logger.error('This is an error message.');

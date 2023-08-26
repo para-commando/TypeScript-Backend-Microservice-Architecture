@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import Joi from 'joi';
 import { processMappers } from '../../../sub-systems/Microservice-1/Process-Mappers/processMappers';
 import {CustomError} from "../../../shared/src/interfaces/userDefinedInterfaces"
 import { logger } from '../../../shared/src/configurations/logger.configurations';
 import { createRateLimiter, rateLimitMiddleware } from "../Middlewares/Route-Middlewares/expressRateLimit.middleware"
+import { z } from 'zod';
 
 const app = require('../app');
 
@@ -13,30 +13,25 @@ const endpoint1Limiter = createRateLimiter({ tokensPerInterval: 3, interval: 100
 app.post("/myEndPoint1", rateLimitMiddleware(endpoint1Limiter),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const schema = Joi.object({
-        name: Joi.string().valid('Anirudh', 'Nayak').default(null),
-        demand: Joi.string()
-          .valid('Highest', 'High', 'Medium', 'Low')
-          .default(null),
-        myTaskStatus: Joi.string()
-          .valid('Not Started', 'In Progress', 'Completed', 'Unassigned')
-          .default(null),
+      // Explore more and use accordingly
+      const schema = z.object({
+        name: z.string().optional().refine(value => value === 'Anirudh' || value === 'Nayak', {
+          message: 'Invalid name value',
+        }),
+        demand: z.enum(['Highest', 'High', 'Medium', 'Low']).optional(),
+        myTaskStatus: z.enum(['Not Started', 'In Progress', 'Completed', 'Unassigned']).optional(),
       });
-      const validationResult = schema.validate(req.body);
-      if (validationResult.error) {
-        logger.warn('This is a warning message.');
-        logger.error('This is an error message.');
+      const validationResult = schema.parse(req.body);
+      console.log("🚀 ~ file: microserviceRouters.ts:25 ~ validationResult:", validationResult)
 
-        res.sendStatus(400);
-      } else {
-        const response = await processMappers.process1(validationResult.value);
+        const response = await processMappers.process1(validationResult);
 
         logger.info("🚀 ~ file: microserviceRouters.js:31 ~ response:", response);
         res.json({
           response: response,
         });
       }
-    } catch (error) {
+    catch (error) {
       logger.error('This is an error message.');
 
       if (error && typeof error === 'object' && 'message' in error) {
