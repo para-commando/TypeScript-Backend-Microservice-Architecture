@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'myTypeScriptArch',
-      script: './JavaScript/server/API-Gateway/src/app.js',
+      script: './JavaScriptFiles/server/API-Gateway/src/Microservice-Routers/microserviceRouters.js',
       watch: true,
       ignore_watch: ['node_modules'],
       instances: 1,
