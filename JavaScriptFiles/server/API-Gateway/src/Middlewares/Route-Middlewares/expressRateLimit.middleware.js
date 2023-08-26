@@ -10,16 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rateLimitMiddleware = exports.createRateLimiter = void 0;
-const limiter_1 = require("limiter");
-class RateLimiterExtended extends limiter_1.RateLimiter {
-    constructor({ tokensPerInterval, interval, fireImmediately, numberOfTokensToSubtract: numberOfTokensToSubtract }) {
-        super({ tokensPerInterval, interval, fireImmediately });
-        this.numberOfTokensToSubtract = numberOfTokensToSubtract;
-    }
-}
+const userDefinedClasses_1 = require("../../../../shared/src/classes/userDefinedClasses");
 // Create a new rate limiter instance with desired settings
 const createRateLimiter = ({ tokensPerInterval, interval, numberOfTokensToSubtract, fireImmediately }) => {
-    return new RateLimiterExtended({
+    return new userDefinedClasses_1.RateLimiterExtended({
         tokensPerInterval,
         interval,
         fireImmediately: fireImmediately,

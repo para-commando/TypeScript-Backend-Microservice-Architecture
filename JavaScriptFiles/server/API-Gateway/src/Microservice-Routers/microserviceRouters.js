@@ -18,7 +18,7 @@ const logger_configurations_1 = require("../../../shared/src/configurations/logg
 const expressRateLimit_middleware_1 = require("../Middlewares/Route-Middlewares/expressRateLimit.middleware");
 const app = require('../app');
 // interval in milliseconds
-const endpoint1Limiter = (0, expressRateLimit_middleware_1.createRateLimiter)({ tokensPerInterval: 5, interval: 10000, numberOfTokensToSubtract: 1, fireImmediately: true });
+const endpoint1Limiter = (0, expressRateLimit_middleware_1.createRateLimiter)({ tokensPerInterval: 3, interval: 10000, numberOfTokensToSubtract: 1, fireImmediately: true });
 app.post("/myEndPoint1", (0, expressRateLimit_middleware_1.rateLimitMiddleware)(endpoint1Limiter), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const schema = joi_1.default.object({
@@ -48,7 +48,7 @@ app.post("/myEndPoint1", (0, expressRateLimit_middleware_1.rateLimitMiddleware)(
         logger_configurations_1.logger.error('This is an error message.');
         if (error && typeof error === 'object' && 'message' in error) {
             const customError = error;
-            return res.status(customError.status || 401).send(customError.message);
+            return res.status((customError === null || customError === void 0 ? void 0 : customError.status) || 401).send(customError === null || customError === void 0 ? void 0 : customError.message);
         }
         else {
             return res.status(401).send('Unknown error occurred while token verification');

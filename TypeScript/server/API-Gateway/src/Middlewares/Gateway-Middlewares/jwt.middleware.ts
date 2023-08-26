@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import {CustomError} from "../../../../shared/src/interfaces/userDefinedInterfaces"
 import * as dotenv from 'dotenv';
 dotenv.config();
-interface CustomError {
-  message: string;
-}
+ 
  
 export const authenticateJsonWebToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('Authorization')?.split(' ')[1];
