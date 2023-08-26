@@ -112,7 +112,7 @@ Each service exposes its own set of APIs.
    
 ```
 ## Directory Structure
-
+```
 ├── ecosystem.config.js
 ├── JavaScriptFiles
 │   └── server
@@ -212,7 +212,7 @@ Each service exposes its own set of APIs.
                 │   └── process.ts
                 └── Process-Mappers
                     └── processMappers.ts
-
+```
 ## Scripts
 
     npm startDev: Starts the services using PM2 in development mode.
