@@ -17,7 +17,8 @@ const processMappers_1 = require("../../../sub-systems/Microservice-1/Process-Ma
 const logger_configurations_1 = require("../../../shared/src/configurations/logger.configurations");
 const expressRateLimit_middleware_1 = require("../Middlewares/Route-Middlewares/expressRateLimit.middleware");
 const app = require('../app');
-const endpoint1Limiter = (0, expressRateLimit_middleware_1.createRateLimiter)(2, "minute");
+// interval in milliseconds
+const endpoint1Limiter = (0, expressRateLimit_middleware_1.createRateLimiter)({ tokensPerInterval: 5, interval: 10000, numberOfTokensToSubtract: 1, fireImmediately: true });
 app.post("/myEndPoint1", (0, expressRateLimit_middleware_1.rateLimitMiddleware)(endpoint1Limiter), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const schema = joi_1.default.object({

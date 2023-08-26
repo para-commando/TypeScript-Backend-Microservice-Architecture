@@ -16,6 +16,11 @@ exports.helmetMiddleware = (0, helmet_1.default)({
         directives: {
             defaultSrc: ["'self'", 'https:'],
             connectSrc: ["'self'", 'https:'],
+            imgSrc: ['*', 'data:'],
+            styleSrc: ["'self'", 'https:', "'unsafe-inline'"],
+            scriptSrc: ["'self'", 'https:', "'unsafe-inline'", "'unsafe-eval'"],
+            fontSrc: ["'self'", 'https:', 'data:'],
+            upgradeInsecureRequests: [],
         },
     },
     crossOriginEmbedderPolicy: {

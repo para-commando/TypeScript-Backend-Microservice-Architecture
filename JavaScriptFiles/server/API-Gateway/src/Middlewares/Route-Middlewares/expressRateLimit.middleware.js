@@ -11,20 +11,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rateLimitMiddleware = exports.createRateLimiter = void 0;
 const limiter_1 = require("limiter");
+class RateLimiterExtended extends limiter_1.RateLimiter {
+    constructor({ tokensPerInterval, interval, fireImmediately, numberOfTokensToSubtract: numberOfTokensToSubtract }) {
+        super({ tokensPerInterval, interval, fireImmediately });
+        this.numberOfTokensToSubtract = numberOfTokensToSubtract;
+    }
+}
 // Create a new rate limiter instance with desired settings
-const createRateLimiter = (tokensPerInterval, interval) => {
-    return new limiter_1.RateLimiter({
+const createRateLimiter = ({ tokensPerInterval, interval, numberOfTokensToSubtract, fireImmediately }) => {
+    return new RateLimiterExtended({
         tokensPerInterval,
         interval,
+        fireImmediately: fireImmediately,
+        numberOfTokensToSubtract: numberOfTokensToSubtract
     });
 };
 exports.createRateLimiter = createRateLimiter;
 // Reusable middleware function to handle rate limiting
 const rateLimitMiddleware = (rateLimiter) => (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const remainingRequests = yield rateLimiter.removeTokens(1).then();
-    if (remainingRequests < 0) {
+    //  console.log("🚀 ~ file: expressRateLimit.middleware.ts:19 ~ rateLimiter.getTokensRemaining():", rateLimiter.getTokensRemaining())
+    const remainingRequests = Math.floor(yield rateLimiter.removeTokens(rateLimiter.numberOfTokensToSubtract).then());
+    console.log("🚀 ~ file: expressRateLimit.middleware.ts:19 ~ remainingRequests:", remainingRequests);
+    if (remainingRequests < 1) {
         res.writeHead(429, { 'Content-Type': 'text/plain;charset=UTF-8' });
-        res.end('429 Too Many Requests - your IP is being rate limited');
+        res.end('Too Many Requests - your IP is being rate limited');
+        // res.status(401).send('Unknown error occurred while token verification');
     }
     else {
         next();
