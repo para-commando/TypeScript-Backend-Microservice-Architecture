@@ -113,53 +113,105 @@ Each service exposes its own set of APIs.
 ```
 ## Directory Structure
 
-    server
+├── ecosystem.config.js
+├── JavaScriptFiles
+│   └── server
+│       ├── API-Gateway
+│       │   └── src
+│       │       ├── app.js
+│       │       ├── app.js.map
+│       │       ├── Microservice-Routers
+│       │       │   ├── microserviceRouters.js
+│       │       │   └── microserviceRouters.js.map
+│       │       └── Middlewares
+│       │           ├── Gateway-Middlewares
+│       │           │   ├── ddos.middleware.js
+│       │           │   ├── ddos.middleware.js.map
+│       │           │   ├── helmet.middleware.js
+│       │           │   ├── helmet.middleware.js.map
+│       │           │   ├── jwt.middleware.js
+│       │           │   ├── jwt.middleware.js.map
+│       │           │   ├── morgan.middleware.js
+│       │           │   ├── morgan.middleware.js.map
+│       │           │   ├── responseTime.middleware.js
+│       │           │   └── responseTime.middleware.js.map
+│       │           └── Route-Middlewares
+│       │               ├── expressRateLimit.middleware.js
+│       │               └── expressRateLimit.middleware.js.map
+│       ├── shared
+│       │   └── src
+│       │       ├── classes
+│       │       │   ├── userDefinedClasses.js
+│       │       │   └── userDefinedClasses.js.map
+│       │       ├── configurations
+│       │       │   ├── logger.configurations.js
+│       │       │   ├── logger.configurations.js.map
+│       │       │   ├── redis.configurations.js
+│       │       │   └── redis.configurations.js.map
+│       │       ├── constants
+│       │       │   ├── constants.js
+│       │       │   └── constants.js.map
+│       │       ├── interfaces
+│       │       │   ├── userDefinedInterfaces.js
+│       │       │   └── userDefinedInterfaces.js.map
+│       │       ├── models
+│       │       │   ├── models.js
+│       │       │   └── models.js.map
+│       │       └── utilities
+│       │           ├── errorManagementUtilities.js
+│       │           └── errorManagementUtilities.js.map
+│       └── sub-systems
+│           └── Microservice-1
+│               ├── Processes
+│               │   ├── process.js
+│               │   └── process.js.map
+│               └── Process-Mappers
+│                   ├── processMappers.js
+│                   └── processMappers.js.map
+├── package.json
+├── package-lock.json
+├── README.md
+├── startScript.sh
+├── tsconfig.json
+└── TypeScript
+    └── server
         ├── API-Gateway
         │   └── src
-        │       ├── app.js
+        │       ├── app.ts
         │       ├── Microservice-Routers
-        │       │   └── microserviceRouters.js
+        │       │   └── microserviceRouters.ts
         │       └── Middlewares
         │           ├── Gateway-Middlewares
-        │           │   ├── ddos.middleware.js
-        │           │   ├── helmet.middleware.js
-        │           │   ├── jwt.middleware.js
-        │           │   ├── morgan.middleware.js
-        │           │   └── responseTime.middleware.js
+        │           │   ├── ddos.middleware.ts
+        │           │   ├── helmet.middleware.ts
+        │           │   ├── jwt.middleware.ts
+        │           │   ├── morgan.middleware.ts
+        │           │   └── responseTime.middleware.ts
         │           └── Route-Middlewares
-        │               └── expressRateLimit.middleware.js
-        |
+        │               └── expressRateLimit.middleware.ts
         ├── shared
         │   └── src
+        │       ├── classes
+        │       │   └── userDefinedClasses.ts
         │       ├── configurations
-        │       │   ├── logger.configurations.js
-        │       │   └── redis.configurations.js
+        │       │   ├── logger.configurations.ts
+        │       │   └── redis.configurations.ts
         │       ├── constants
-        │       │   └── constants.js
+        │       │   └── constants.ts
+        │       ├── customDeclarations
+        │       │   └── customDeclarations.d.ts
+        │       ├── interfaces
+        │       │   └── userDefinedInterfaces.ts
         │       ├── models
-        │       │   └── models.js
+        │       │   └── models.ts
         │       └── utilities
-        │           └── utilities.js
-        |── sub-systems
-        |    ├── Microservice-1
-        |    │   ├── Processes
-        |    │   │   └── process.js
-        |    │   └── Process-Mappers
-        |    │       └── processMappers.js
-        |    ├── Microservice-2
-        |    │   ├── Processes
-        |    │   │   └── process.js
-        |    │   └── Process-Mappers
-        |    │       └── processMappers.js
-        |    └── Microservice-3
-        |        ├── Processes
-        |        │   └── process.js
-        |        └── Process-Mappers
-        |            └── processMappers.js
-        |
-        ├── ecosystem.config.js
-        ├── package.json
-        ├── package-lock.json
+        │           └── errorManagementUtilities.ts
+        └── sub-systems
+            └── Microservice-1
+                ├── Processes
+                │   └── process.ts
+                └── Process-Mappers
+                    └── processMappers.ts
 
 ## Scripts
 
