@@ -1,6 +1,6 @@
 # Backend Microservice Architecture
 
-This repository demonstrates a sample backend microservice architecture using Node.js and Express.js.
+This repository contains a TypeScript microservice architecture project.   
 
 ## Table of Contents
 
@@ -37,34 +37,16 @@ Feel free to explore the individual middleware modules located in the 'Middlewar
 
 The API Gateway service includes multiple endpoints that interact with various microservices. Each endpoint is associated with specific rate-limiting middleware and request processing logic. Here are the details of the endpoints:
 
-### /myEndPoint
+### /myEndPoint1
 
 - Description: This endpoint processes requests and interacts with Microservice 1.
 - HTTP Method: POST
-- Rate Limiting: The requests to this endpoint are rate-limited using the `expressRateLimiterMiddleware` middleware from the `myEndPointMiddlewares` module.
-- Request Body Validation: The incoming request body is validated against a predefined schema using the `Joi` library.
+- Rate Limiting: The requests to this endpoint are rate-limited using the `limiter` middleware module
+- Request Body Validation: The incoming request body is validated against a predefined schema using the `Zod` library.
 - Request Processing: Upon successful validation, the request data is passed to the `processMappers.process1` function from Microservice 1's `processMappers` module for further processing.
 - Logging: Logging messages are generated using the `logger` module for different scenarios, such as warnings, errors, and informational messages.
 
-### /myEndPoint2
 
-- Description: This endpoint processes requests and interacts with Microservice 2.
-- HTTP Method: POST
-- Rate Limiting: The requests to this endpoint are rate-limited using the `expressRateLimiterMiddleware` middleware from the `myEndPoint2Middlewares` module.
-- Request Body Validation: The incoming request body is validated against a predefined schema using the `Joi` library.
-- Request Processing: Upon successful validation, the request data is passed to the `processMappers2.process1` function from Microservice 2's `processMappers` module for further processing.
-- Logging: Logging messages are generated using the `logger` module for different scenarios, such as warnings, errors, and informational messages.
-
-### /myEndPoint3
-
-- Description: This endpoint processes requests and interacts with Microservice 3.
-- HTTP Method: POST
-- Rate Limiting: The requests to this endpoint are rate-limited using the `expressRateLimiterMiddleware` middleware from the `myEndPoint3Middlewares` module.
-- Request Body Validation: The incoming request body is validated against a predefined schema using the `Joi` library.
-- Request Processing: Upon successful validation, the request data is passed to the `processMappers3.process1` function from Microservice 3's `processMappers` module for further processing.
-- Logging: Logging messages are generated using the `logger` module for different scenarios, such as warnings, errors, and informational messages.
-
-Feel free to explore the code in `microserviceRouters.js` for more details on the implementation of each endpoint and its associated middleware.
 
 ## Features
 
@@ -81,12 +63,12 @@ To get started with the project, follow these steps:
 
 1. Clone the repository:
 ```  
-   git clone https://github.com/anirudh-nayak-172k/Backend-Microservice -Architecture.git
+   git clone https://github.com/anirudh-nayak-172k/Typescript-Microservice-Arch.git
 ```  
 
 2 . Navigate to the Directory and install the dependencies:
 ```
-    cd Backend-Microservice-Architecture
+    cd Typescript-Microservice-Arch
     npm install
 ```
 
@@ -215,51 +197,56 @@ Each service exposes its own set of APIs.
 ```
 ## Scripts
 
-    npm startDev: Starts the services using PM2 in development mode.
-    
-    npm start: Starts the API Gateway service.
-    
-    npm kill: Stops all running PM2 processes.
-    
-    npm monitor: Monitors the PM2 processes.
-    
-    npm displayLogs: Displays the logs from PM2 processes.
-    
-    npm test: Runs the test scripts.
+    npm run onlyTsFiles: Runs the TypeScript file server.ts using ts-node-dev, monitoring it for changes, transpiling it on-the-fly, and restarting the application when changes occur.
+
+    npm start: Starts the application by running the compiled JavaScript file microserviceRouters.js.
+
+    npm run startDev: Executes the startScript.sh shell script, which likely contains commands for starting your development environment. It starts the server code and TypeScript compiler in watch mode using pm2 and displays logs.
+
+    npm run kill: Terminates the pm2 process manager along with all managed applications.
+
+    npm run build: Transpiles the TypeScript code in the current directory using the TypeScript compiler (tsc), producing JavaScript files.
+
+    npm run monitor: Opens a monitoring interface that displays real-time process statistics managed by pm2.
+
+    npm run displayLogs: Displays the logs of the applications managed by pm2.
+
+    npm run runts: Runs the TypeScript file microserviceRouters.ts using ts-node, transpiling and executing TypeScript files directly..
 
 ## Dependencies
 
-    Express: Fast, unopinionated, minimalist web framework for Node.js.
     
-    Body Parser: Node.js body parsing middleware.
-    
-    Bunyan: Logging library for Node.js.
-    
-    Bunyan Format: Human-readable bunyan log formatter.
-    
-    DDoS: DDoS protection middleware for Express.js.
-    
-    Dotenv: Loads environment variables from a .env file.
-    
-    Helmet: Secure your Express apps by setting various HTTP headers.
-    
-    Joi: Object schema validation for Node.js. 
-    
-    JSONWebToken: JSON Web Token implementation for Node.js.
-    
-    Morgan: HTTP request logger middleware for Node.js.
-    
-    Nodemon: Automatically restarts the server on file changes during   development.
-    
-    PM2: Production process manager for Node.js applications.
-    
-    Express Rate Limit: Rate limiting middleware for Express.js.
-    
-    Redis: In-memory data structure store used as a database and cache.
-    
-    Rate Limit Redis: Redis-based store for express-rate-limit middleware.
-    
-    Response Time: Express.js middleware to record response times.
+**Prod Dependencies:**
+
+- `body-parser`: Parses incoming request bodies in Express applications.
+- `bunyan`: A structured logging library for Node.js applications.
+- `bunyan-format`: A Bunyan log formatter that enhances the output for easier readability.
+- `ddos`: Helps protect applications from Distributed Denial-of-Service (DDoS) attacks.
+- `dotenv`: Loads environment variables from a `.env` file into `process.env`.
+- `express`: A fast, unopinionated web framework for Node.js.
+- `helmet`: Enhances security by setting various HTTP headers for Express applications.
+- `jsonwebtoken`: Implements JSON Web Tokens (JWT) for user authentication and authorization.
+- `limiter`: Provides rate limiting for APIs to prevent abuse.
+- `morgan`: HTTP request logger middleware for Express applications.
+- `nodemon`: Monitors for file changes and automatically restarts the server.
+- `redis`: A popular in-memory data store for caching and other use cases.
+- `response-time`: Measures the response time of Express applications.
+- `ts-node-dev`: TypeScript execution and reloading tool for development.
+- `zod`: A TypeScript-first schema validation library for JavaScript objects.
+
+**Dev Dependencies:**
+
+- `@types/express`: TypeScript type declarations for the Express framework.
+- `@types/helmet`: TypeScript type declarations for the Helmet security middleware.
+- `@types/jsonwebtoken`: TypeScript type declarations for JSON Web Tokens (JWT).
+- `@types/morgan`: TypeScript type declarations for the Morgan HTTP request logger.
+- `@types/node`: TypeScript type declarations for Node.js.
+- `concurrently`: Runs multiple commands concurrently in the terminal.
+- `nodemon`: Monitors for file changes and automatically restarts the server (used for development).
+- `pm2`: A process manager that simplifies deployment and management of Node.js applications.
+- `ts-node`: TypeScript execution environment for running TypeScript files directly.
+- `typescript`: The TypeScript programming language.
+
 
 ## License
 
