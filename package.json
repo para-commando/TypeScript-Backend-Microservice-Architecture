@@ -13,6 +13,16 @@
     "displayLogs": "pm2 logs",
     "runts": "ts-node  ./TypeScript/server/API-Gateway/src/Microservice-Routers/microserviceRouters.ts"
   },
+  "scriptsInfo": {
+    "onlyTsFiles": "Starts server in watch mode with automatic recompilation using ts-node-dev.",
+    "start": "Starts the application using the compiled JavaScript file.",
+    "startDev": "Starts the development environment using the startScript.sh shell script.",
+    "kill": "Terminates the pm2 process manager along with all managed applications.",
+    "build": "Compiles TypeScript code using the TypeScript compiler where path to the tsconfig is specified after the -p flag",
+    "monitor": "Opens a monitoring interface for pm2-managed processes.",
+    "displayLogs": "Displays the logs of pm2-managed applications.",
+    "runts": "Runs the TypeScript file using ts-node."
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
