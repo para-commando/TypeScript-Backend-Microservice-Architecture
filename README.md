@@ -13,7 +13,7 @@ This repository contains a TypeScript microservice architecture project.
 
 ## Introduction
 
-![Example Image](./TypeScript/server/shared/src/assets/mic1.png)
+![Example Image](./TypeScript/server/shared/src/assets/mic1.jpeg)
 
 
 This project showcases a microservice-based architecture for building scalable and modular backend systems. It aims to provide a foundation for building distributed applications with separate services for different functionalities.
