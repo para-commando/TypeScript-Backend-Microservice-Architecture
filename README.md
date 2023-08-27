@@ -11,7 +11,7 @@ This repository contains a TypeScript microservice architecture project.
 - [Dependencies](#dependencies)
 - [License](#license)
 
-![Example](./TypeScript/server/shared/src/assets/microservicesVisual.jpeg)
+![Example](./TypeScript/server/shared/src/assets/microservicesVisual3.jpeg)
 
 ## Introduction
 
