@@ -11,7 +11,7 @@ This repository contains a TypeScript microservice architecture project.
 - [Dependencies](#dependencies)
 - [License](#license)
 
-![Example Image](./shared/src/assets/mic.png)
+![Example](./TypeScript/server/shared/src/assets/desktop-wallpaper-parmanu-the-story-of-pokhran-wiki-trailer-star-cast-lifetime-earning-full-details-parmanu-the-story-of-pokhran.jpg)
 
 ## Introduction
 
