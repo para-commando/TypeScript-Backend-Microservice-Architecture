@@ -1,4 +1,4 @@
-# Backend Microservice Architecture
+# TypeScript Backend-Microservice Architecture
 
 This repository contains a TypeScript microservice architecture project.   
 ![Example](./TypeScript/server/shared/src/assets/microservicesVisual.jpeg)
