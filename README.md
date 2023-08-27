@@ -63,12 +63,12 @@ To get started with the project, follow these steps:
 
 1. Clone the repository:
 ```  
-   git clone https://github.com/anirudh-nayak-172k/Typescript-Microservice-Arch.git
+   git clone https://github.com/anirudh-nayak-172k/TypeScript-Backend-Microservice-Architecture.git
 ```  
 
 2 . Navigate to the Directory and install the dependencies:
 ```
-    cd Typescript-Microservice-Arch
+    cd TypeScript-Backend-Microservice-Architecture
     npm install
 ```
 
@@ -95,6 +95,8 @@ Each service exposes its own set of APIs.
 ```
 ## Directory Structure
 ```
+TypeScript-Backend-Microservice-Architecture
+|
 ├── ecosystem.config.js
 ├── JavaScriptFiles
 │   └── server
