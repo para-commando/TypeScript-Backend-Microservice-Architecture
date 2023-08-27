@@ -11,12 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const processMappers_1 = require("../../../sub-systems/Microservice-1/Process-Mappers/processMappers");
 const logger_configurations_1 = require("../../../shared/src/configurations/logger.configurations");
-const expressRateLimit_middleware_1 = require("../Middlewares/Route-Middlewares/expressRateLimit.middleware");
+const apiRequestRateLimiting_middleware_1 = require("../Middlewares/Route-Middlewares/apiRequestRateLimiting.middleware");
 const zod_1 = require("zod");
 const app = require('../app');
 // interval in milliseconds
-const endpoint1Limiter = (0, expressRateLimit_middleware_1.createRateLimiter)({ tokensPerInterval: 3, interval: 10000, numberOfTokensToSubtract: 1, fireImmediately: true });
-app.post("/myEndPoint1", (0, expressRateLimit_middleware_1.rateLimitMiddleware)(endpoint1Limiter), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const endpoint1Limiter = (0, apiRequestRateLimiting_middleware_1.createRateLimiter)({ tokensPerInterval: 3, interval: 10000, numberOfTokensToSubtract: 1, fireImmediately: true });
+app.post("/myEndPoint1", (0, apiRequestRateLimiting_middleware_1.rateLimitMiddleware)(endpoint1Limiter), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Explore more and use accordingly
         const schema = zod_1.z.object({

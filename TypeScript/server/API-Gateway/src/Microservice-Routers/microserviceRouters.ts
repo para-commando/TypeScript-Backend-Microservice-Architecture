@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { processMappers } from '../../../sub-systems/Microservice-1/Process-Mappers/processMappers';
 import {CustomError} from "../../../shared/src/interfaces/userDefinedInterfaces"
 import { logger } from '../../../shared/src/configurations/logger.configurations';
-import { createRateLimiter, rateLimitMiddleware } from "../Middlewares/Route-Middlewares/expressRateLimit.middleware"
+import { createRateLimiter, rateLimitMiddleware } from "../Middlewares/Route-Middlewares/apiRequestRateLimiting.middleware"
 import { z } from 'zod';
 
 const app = require('../app');
