@@ -1,7 +1,10 @@
 # TypeScript Backend-Microservice Architecture
 
 This repository contains a TypeScript microservice architecture project.   
-![Example](./TypeScript/server/shared/src/assets/microservicesVisual.jpeg)
+
+![microservicesVisual](https://github.com/anirudh-nayak-172k/TypeScript-Backend-Microservice-Architecture/assets/123434846/9c9d8a37-11e4-4593-90ec-57fcd1df7e37)
+
+
 ## Table of Contents
 
 - [Introduction](#introduction)
